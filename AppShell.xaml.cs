@@ -13,5 +13,8 @@ public partial class AppShell : Shell
 	private void RegisterRoutes()
 	{
         Routing.RegisterRoute("connectingToServer", typeof(ConnectingToServerView));
+		Routing.RegisterRoute("triviaGame", typeof(TriviaGameView));
+        Routing.RegisterRoute("signUp", typeof(SignUpView));
+        Routing.RegisterRoute("questionDetails", typeof(QuestionDetailsView));
     }
 }
