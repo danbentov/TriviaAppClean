@@ -9,7 +9,7 @@ using TriviaAppClean.Services;
 
 namespace TriviaAppClean.ViewModels
 {
-    internal class SignUpViewModel:ViewModelBase
+    public class SignUpViewModel:ViewModelBase
     {
 
         private string email;
@@ -54,16 +54,16 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
-        private string passwordAprove;
-        public string PasswordAprove
+        private string passwordApprove;
+        public string PasswordApprove
         {
             get
             {
-                return passwordAprove;
+                return passwordApprove;
             }
             set
             {
-                passwordAprove = value;
+                passwordApprove = value;
                 OnPropertyChanged();
             }
         }

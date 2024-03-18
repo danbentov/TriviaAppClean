@@ -5,8 +5,23 @@
              Title="SignUpView">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="Login!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        <Entry
+            Text="{Binding Email}"
+            Placeholder="Enter your Email"/>
+        <Entry
+            Text="{Binding Name}"
+            Placeholder="Enter your Name"/>
+        <Entry
+            Text="{Binding Password}"
+            Placeholder="Enter your Password"/>
+        <Entry
+            Text="{Binding PasswordApprove}"
+            Placeholder="Enter your Password Approval"/>
+
+
+        <Button Text="Submit Sign Up" Command="{Binding SignUpCommand}" />
     </VerticalStackLayout>
 </ContentPage>

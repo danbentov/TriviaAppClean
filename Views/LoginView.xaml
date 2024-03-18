@@ -5,7 +5,7 @@
              Title="LoginView">
     <VerticalStackLayout VerticalOptions="Center">
         <Label 
-            Text="Press To Login!"
+            Text="Login!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         <Entry
