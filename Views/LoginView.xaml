@@ -8,7 +8,16 @@
             Text="Press To Login!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <Button Text="Submit Login" Command="{Binding LoginCommand}" IsEnabled="{Binding NotInServerCall}"></Button>
-        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator> 
+        <Entry
+            Text="{Binding Email}"
+            Placeholder="Enter your Email"/>
+        <Entry
+            Text="{Binding Password}"
+            Placeholder="Enter your Password"/>
+
+
+        <Button Text="Submit Login" Command="{Binding LoginCommand}" />
+        <Button Text="Sign Up" Command="{Binding IntoSignUpCommand}"/>
+
     </VerticalStackLayout>
 </ContentPage>

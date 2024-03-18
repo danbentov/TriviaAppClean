@@ -15,56 +15,67 @@ namespace TriviaAppClean.ViewModels
         private TriviaWebAPIProxy triviaService;
         public LoginViewModel(TriviaWebAPIProxy service) 
         {
-            InServerCall = false;
             this.triviaService = service;
             this.LoginCommand = new Command(OnLogin);
+            this.IntoSignUpCommand = new Command(OnSignUpSelect);
         }
 
         public ICommand LoginCommand { get; set; }
         private async void OnLogin()
         {
             //Choose the way you want to blobk the page while indicating a server call
-            InServerCall=true;
-            //await Shell.Current.GoToAsync("connectingToServer");
-            User u  = await this.triviaService.LoginAsync("ofer@ofer.com", "1234");
-            //await Shell.Current.Navigation.PopModalAsync();
-            InServerCall = false;
-
+            
+            await Shell.Current.GoToAsync("connectingToServer");
+            User u  = await this.triviaService.LoginAsync(Email, Password);
+            await Shell.Current.Navigation.PopModalAsync();
+            
             //Set the application logged in user to be whatever user returned (null or real user)
             ((App)Application.Current).LoggedInUser = u;
             if (u == null)
             {
-                
                 await Shell.Current.DisplayAlert("Login", "Login Faild!", "ok");
             }
             else
             {
-                Application.Current.MainPage = new AppShell();
                 await Shell.Current.DisplayAlert("Login", $"Login Succeed! for {u.Name} with {u.Questions.Count} Questions", "ok");
+                Application.Current.MainPage = new AppShell();
             }
         }
 
-        private bool inServerCall;
-        public bool InServerCall
+        public ICommand IntoSignUpCommand { get; set; }
+        private async void OnSignUpSelect()
+        {
+            await Shell.Current.GoToAsync("signUp");
+        }
+
+        private string email;
+        public string Email
         {
             get
             {
-                return this.inServerCall;
+                return this.email;
             }
             set
             {
-                this.inServerCall = value;
-                OnPropertyChanged("NotInServerCall");
-                OnPropertyChanged("InServerCall");
+                this.email = value;
+                OnPropertyChanged();
             }
         }
 
-        public bool NotInServerCall
+        private string password;
+        public string Password
         {
             get
             {
-                return !this.InServerCall;
+                return this.password;
+            }
+            set
+            {
+                this.password = value;
+                OnPropertyChanged();
             }
         }
+
+
     }
 }
