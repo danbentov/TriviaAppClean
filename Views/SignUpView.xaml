@@ -3,6 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TriviaAppClean.Views.SignUpView"
              Title="SignUpView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="EnterButton" TargetType="Button">
+                <Setter Property="BackgroundColor"  Value="Green"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontAttributes" Value="Italic"/>
+                <Setter Property="CornerRadius" Value="15"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <VerticalStackLayout>
         <Label 
             Text="SignUp!"
