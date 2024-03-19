@@ -5,6 +5,12 @@
              x:Class="TriviaAppClean.App">
     <Application.Resources>
         <ResourceDictionary>
+            <Style x:Key="EnterButton" TargetType="Button">
+                <Setter Property="BackgroundColor"  Value="Green"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontAttributes" Value="Italic"/>
+                <Setter Property="CornerRadius" Value="15"/>
+            </Style>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />

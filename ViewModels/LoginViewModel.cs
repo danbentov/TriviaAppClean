@@ -1,4 +1,5 @@
-﻿using System;
+﻿//using Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific.AppCompat;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -7,17 +8,20 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TriviaAppClean.Models;
 using TriviaAppClean.Services;
+using TriviaAppClean.Views;
 
 namespace TriviaAppClean.ViewModels
 {
     public class LoginViewModel:ViewModelBase
     {
         private TriviaWebAPIProxy triviaService;
-        public LoginViewModel(TriviaWebAPIProxy service) 
+        private SignUpView signUpView;
+        public LoginViewModel(TriviaWebAPIProxy service, SignUpView signUpView) 
         {
             this.triviaService = service;
             this.LoginCommand = new Command(OnLogin);
             this.IntoSignUpCommand = new Command(OnSignUpSelect);
+            this.signUpView = signUpView;
         }
 
         public ICommand LoginCommand { get; set; }
@@ -45,7 +49,7 @@ namespace TriviaAppClean.ViewModels
         public ICommand IntoSignUpCommand { get; set; }
         private async void OnSignUpSelect()
         {
-            await Shell.Current.GoToAsync("signUp");
+            await Application.Current.MainPage.Navigation.PushAsync(signUpView);
         }
 
         private string email;
