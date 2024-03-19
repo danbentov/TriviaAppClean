@@ -4,9 +4,10 @@
              x:Class="TriviaAppClean.Views.GameStartView"
              Title="GameStartView">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Button
+            Padding="20,3"
+            Style="{StaticResource EnterButton}"
+            Text="Start Game !"
+            Command="{Binding StartGameCommand}"/>
     </VerticalStackLayout>
 </ContentPage>

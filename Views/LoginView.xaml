@@ -16,7 +16,8 @@
             Placeholder="Enter your Password"/>
 
 
-        <Button Text="Submit Login" Command="{Binding LoginCommand}" />
+        <Button Text="Submit Login" Command="{Binding LoginCommand}"
+                Style="{StaticResource EnterButton}"/>
         <Button Text="Sign Up" Command="{Binding IntoSignUpCommand}"/>
 
     </VerticalStackLayout>
