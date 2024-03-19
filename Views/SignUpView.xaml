@@ -22,6 +22,7 @@
             Placeholder="Enter your Password Approval"/>
 
 
-        <Button Text="Submit Sign Up" Command="{Binding SignUpCommand}" />
+        <Button Text="Submit Sign Up" Command="{Binding SignUpCommand}"
+                Style="{StaticResource EnterButton}"/>
     </VerticalStackLayout>
 </ContentPage>
