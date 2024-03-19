@@ -92,14 +92,15 @@ namespace TriviaAppClean.ViewModels
         }
 
         public ICommand SignUpCommand { get; set; }
-        // בפעולת רג'יסטר יש לזכור לדאוג לאפס את הניקוד והדרגה לפי המבוקש.
+
         private async void OnSignUp()
         {
             User u = new User();
             u.Email = Email;
             u.Password = Password;
             u.Name = Name;
-            u.Id = Id;
+            u.Score = 0;
+            u.Rank = 0;
             await Shell.Current.GoToAsync("connectingToServer");
             bool a = await this.triviaService.RegisterUser(u);
             await Shell.Current.Navigation.PopModalAsync();

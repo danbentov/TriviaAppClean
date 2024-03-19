@@ -5,7 +5,7 @@
              Title="SignUpView">
     <VerticalStackLayout>
         <Label 
-            Text="Login!"
+            Text="SignUp!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         <Entry
