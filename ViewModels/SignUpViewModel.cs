@@ -110,9 +110,8 @@ namespace TriviaAppClean.ViewModels
 
             if (a== true)
             {
-                ((App)Application.Current).LoggedInUser = u;
                 await Application.Current.MainPage.DisplayAlert("Sign Up", $"Sign Up succeed !! for {u.Name}", "ok");
-                Application.Current.MainPage = new AppShell();
+                await Application.Current.MainPage.Navigation.PopAsync();
             }
             else
             {
