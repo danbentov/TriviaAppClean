@@ -105,7 +105,6 @@ namespace TriviaAppClean.ViewModels
             {
                 ((App)Application.Current).LoggedInUser = neuser;
                 await Shell.Current.DisplayAlert("Update", $"Update succeed !! for {neuser.Name}", "ok");
-                Application.Current.MainPage = new AppShell();
             }
             else
             {

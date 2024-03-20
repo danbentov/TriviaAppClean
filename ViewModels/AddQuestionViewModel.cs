@@ -42,20 +42,34 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
-        private void ValidateComment()
+        private bool isAddingEnabled;
+        public bool IsAddingEnabled
+        {
+            get
+            {
+                return isAddingEnabled;
+            }
+            set
+            {
+                isAddingEnabled = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool ValidateComment()
         {
             if (((App)Application.Current).LoggedInUser.Rank == 2)
             {
-                this.showErrorComment = true;
+                return false;
             }
             else if (((App)Application.Current).LoggedInUser.Score % 100 == 0 && ((App)Application.Current).LoggedInUser.Questions.Count < ((App)Application.Current).LoggedInUser.Score / 100)
             {
-                this.showErrorComment = true;
+                return false;
 
             }
             else
             {
-                this.showErrorComment = false;
+                return true;
 
             }
         }
@@ -138,7 +152,8 @@ namespace TriviaAppClean.ViewModels
             this.triviaService = service;
             this.connectingToServerView = connect;
             this.ErrorComment = "אינך רשאי להוסיף שאלה";
-            this.ShowErrorComment = false;
+            this.ShowErrorComment = ValidateComment();
+            this.IsAddingEnabled = ValidateComment();
             this.AddQuestionCommand = new Command(OnAddQuestion);
         }
 
@@ -154,18 +169,24 @@ namespace TriviaAppClean.ViewModels
             quest.Bad3 = wrongAnswer3;
             quest.UserId = ((App)Application.Current).LoggedInUser.Id;
             quest.Status = 0;
-            await Application.Current.MainPage.Navigation.PushModalAsync(connectingToServerView);
+            await Shell.Current.Navigation.PushModalAsync(connectingToServerView);
             bool a = await this.triviaService.PostNewQuestion(quest);
-            await Application.Current.MainPage.Navigation.PopModalAsync();
+            await Shell.Current.Navigation.PopModalAsync();
 
             if (a == true)
             {
-                await Application.Current.MainPage.DisplayAlert("Add Qustion", "Add Qustion succeed !!", "ok");
-                Application.Current.MainPage = new AppShell();
+                await Shell.Current.DisplayAlert("Add Qustion", "Add Qustion succeed !!", "ok");
+                this.ShowErrorComment = ValidateComment();
+                this.IsAddingEnabled = ValidateComment();
+                this.Question = "";
+                this.RightAnswer = "";
+                this.WrongAnswer1 = "";
+                this.WrongAnswer2 = "";
+                this.WrongAnswer3 = "";
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Add Qustion", "Add Qustion Failed", "ok");
+                await Shell.Current.DisplayAlert("Add Qustion", "Add Qustion Failed", "ok");
             }
 
         }
