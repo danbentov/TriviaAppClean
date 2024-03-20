@@ -13,11 +13,15 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <VerticalStackLayout>
+    
         <Button
-            Padding="20,3"
             Style="{StaticResource EnterButton}"
             Text="Start Game !"
-            Command="{Binding StartGameCommand}"/>
-    </VerticalStackLayout>
+            Command="{Binding StartGameCommand}"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand"
+            HeightRequest="200"
+                WidthRequest="200"
+                FontSize="Large"/>
+    
 </ContentPage>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TriviaAppClean.Models;
 using TriviaAppClean.Services;
+using TriviaAppClean.Views;
 
 namespace TriviaAppClean.ViewModels
 {
@@ -85,9 +86,11 @@ namespace TriviaAppClean.ViewModels
 
 
         private TriviaWebAPIProxy triviaService;
-        public SignUpViewModel(TriviaWebAPIProxy service)
+        private ConnectingToServerView connectingToServerView;
+        public SignUpViewModel(TriviaWebAPIProxy service, ConnectingToServerView connect)
         {
             this.triviaService = service;
+            this.connectingToServerView = connect;
             this.SignUpCommand = new Command(OnSignUp);
         }
 
@@ -101,19 +104,19 @@ namespace TriviaAppClean.ViewModels
             u.Name = Name;
             u.Score = 0;
             u.Rank = 0;
-            await Shell.Current.GoToAsync("connectingToServer");
+            await Application.Current.MainPage.Navigation.PushModalAsync(connectingToServerView);
             bool a = await this.triviaService.RegisterUser(u);
-            await Shell.Current.Navigation.PopModalAsync();
+            await Application.Current.MainPage.Navigation.PopModalAsync();
 
             if (a== true)
             {
                 ((App)Application.Current).LoggedInUser = u;
-                await Shell.Current.DisplayAlert("Sign Up", $"Sign Up succeed !! for {u.Name}", "ok");
+                await Application.Current.MainPage.DisplayAlert("Sign Up", $"Sign Up succeed !! for {u.Name}", "ok");
                 Application.Current.MainPage = new AppShell();
             }
             else
             {
-                await Shell.Current.DisplayAlert("Sign Up", "Sign Up Failed", "ok");
+                await Application.Current.MainPage.DisplayAlert("Sign Up", "Sign Up Failed", "ok");
             }
 
         }

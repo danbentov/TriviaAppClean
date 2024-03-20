@@ -40,6 +40,7 @@ public static class MauiProgram
         builder.Services.AddTransient<AllQuestionView>();
         builder.Services.AddTransient<AddQuestionView>();
         builder.Services.AddTransient<CheckPendingQuestionView>();
+        builder.Services.AddTransient<ConnectingToServerView>();
 
         builder.Services.AddSingleton<GameStartView> ();
 
