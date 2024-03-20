@@ -16,32 +16,34 @@ namespace TriviaAppClean.ViewModels
     {
         private TriviaWebAPIProxy triviaService;
         private SignUpView signUpView;
+        private ConnectingToServerView connectingToServerView;
         public LoginViewModel(TriviaWebAPIProxy service, SignUpView signUpView) 
         {
             this.triviaService = service;
             this.LoginCommand = new Command(OnLogin);
             this.IntoSignUpCommand = new Command(OnSignUpSelect);
             this.signUpView = signUpView;
+            this.connectingToServerView = connectingToServerView;
         }
 
         public ICommand LoginCommand { get; set; }
         private async void OnLogin()
         {
             //Choose the way you want to blobk the page while indicating a server call
-            
-            await Shell.Current.GoToAsync("connectingToServer");
+
+            await Application.Current.MainPage.Navigation.PushAsync(connectingToServerView);
             User u  = await this.triviaService.LoginAsync(Email, Password);
-            await Shell.Current.Navigation.PopModalAsync();
+            await Application.Current.MainPage.Navigation.PopModalAsync();
             
             //Set the application logged in user to be whatever user returned (null or real user)
             ((App)Application.Current).LoggedInUser = u;
             if (u == null)
             {
-                await Shell.Current.DisplayAlert("Login", "Login Faild!", "ok");
+                await Application.Current.MainPage.DisplayAlert("Login", "Login Faild!", "ok");
             }
             else
             {
-                await Shell.Current.DisplayAlert("Login", $"Login Succeed! for {u.Name} with {u.Questions.Count} Questions", "ok");
+                await Application.Current.MainPage.DisplayAlert("Login", $"Login Succeed! for {u.Name} with {u.Questions.Count} Questions", "ok");
                 Application.Current.MainPage = new AppShell();
             }
         }
