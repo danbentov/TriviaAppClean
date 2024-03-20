@@ -17,7 +17,7 @@ namespace TriviaAppClean.ViewModels
         private TriviaWebAPIProxy triviaService;
         private SignUpView signUpView;
         private ConnectingToServerView connectingToServerView;
-        public LoginViewModel(TriviaWebAPIProxy service, SignUpView signUpView) 
+        public LoginViewModel(TriviaWebAPIProxy service, SignUpView signUpView, ConnectingToServerView connectingToServerView) 
         {
             this.triviaService = service;
             this.LoginCommand = new Command(OnLogin);
