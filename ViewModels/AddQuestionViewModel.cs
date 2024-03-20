@@ -10,7 +10,7 @@ using TriviaAppClean.Views;
 
 namespace TriviaAppClean.ViewModels
 {
-    internal class AddQuestionViewModel:ViewModelBase
+    public class AddQuestionViewModel:ViewModelBase
     {
 
         private string errorComment;
@@ -23,7 +23,6 @@ namespace TriviaAppClean.ViewModels
             set
             {
                 errorComment = value;
-                ValidateComment();
                 OnPropertyChanged();
             }
         }
@@ -56,13 +55,13 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
-        private bool ValidateComment()
+        private bool AddQuestionEligible()
         {
             if (((App)Application.Current).LoggedInUser.Rank == 2)
             {
                 return false;
             }
-            else if (((App)Application.Current).LoggedInUser.Score % 100 == 0 && ((App)Application.Current).LoggedInUser.Questions.Count < ((App)Application.Current).LoggedInUser.Score / 100)
+            else if (((App)Application.Current).LoggedInUser.Questions.Count < ((App)Application.Current).LoggedInUser.Score / 100)
             {
                 return false;
 
@@ -151,9 +150,9 @@ namespace TriviaAppClean.ViewModels
         {
             this.triviaService = service;
             this.connectingToServerView = connect;
-            this.ErrorComment = "אינך רשאי להוסיף שאלה";
-            this.ShowErrorComment = ValidateComment();
-            this.IsAddingEnabled = ValidateComment();
+            this.ErrorComment = "Adding questions is only for managers, and for every 100 points you make, you cannot add a Q !!";
+            this.ShowErrorComment = AddQuestionEligible();
+            this.IsAddingEnabled = AddQuestionEligible();
             this.AddQuestionCommand = new Command(OnAddQuestion);
         }
 
@@ -175,9 +174,9 @@ namespace TriviaAppClean.ViewModels
 
             if (a == true)
             {
-                await Shell.Current.DisplayAlert("Add Qustion", "Add Qustion succeed !!", "ok");
-                this.ShowErrorComment = ValidateComment();
-                this.IsAddingEnabled = ValidateComment();
+                await Shell.Current.DisplayAlert("Add Qustion", "Question is added to the game database successfully !!", "ok");
+                this.ShowErrorComment = AddQuestionEligible();
+                this.IsAddingEnabled = AddQuestionEligible();
                 this.Question = "";
                 this.RightAnswer = "";
                 this.WrongAnswer1 = "";
@@ -186,7 +185,7 @@ namespace TriviaAppClean.ViewModels
             }
             else
             {
-                await Shell.Current.DisplayAlert("Add Qustion", "Add Qustion Failed", "ok");
+                await Shell.Current.DisplayAlert("Add Qustion", "Question has failed to enter the gane database", "ok");
             }
 
         }
