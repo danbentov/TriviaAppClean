@@ -13,8 +13,7 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
-        <Button
+    <Button
             Style="{StaticResource EnterButton}"
             Text="Start Game !"
             Command="{Binding StartGameCommand}"

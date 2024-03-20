@@ -2,7 +2,6 @@
 using TriviaAppClean.Services;
 using TriviaAppClean.ViewModels;
 using TriviaAppClean.Views;
-using CommunityToolkit.Maui.MediaElement;
 namespace TriviaAppClean;
 
 public static class MauiProgram
@@ -12,7 +11,6 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
-			.UseMauiCommunityToolkitMediaElement()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

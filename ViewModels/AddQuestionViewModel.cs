@@ -1,5 +1,4 @@
-﻿using AndroidX.CoordinatorLayout.Widget;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +7,6 @@ using System.Windows.Input;
 using TriviaAppClean.Models;
 using TriviaAppClean.Services;
 using TriviaAppClean.Views;
-using static Java.Util.Jar.Attributes;
 
 namespace TriviaAppClean.ViewModels
 {

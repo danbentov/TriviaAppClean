@@ -24,6 +24,7 @@
         <Entry
             Text="{Binding Password}"
             Placeholder="Enter your Password"/>
+        <Image Source="https://s.yimg.com/ny/api/res/1.2/OEyrjkSv6JDNXf_eIgLwHA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQwMA--/https://s.yimg.com/os/creatr-uploaded-images/2021-02/572c4830-721d-11eb-bb63-96959c3b62f2"></Image>
 
 
         <Button Text="Submit Login" Command="{Binding LoginCommand}"
