@@ -1,9 +1,11 @@
+using TriviaAppClean.ViewModels;
+
 namespace TriviaAppClean.Views;
 
 public partial class QuestionDetailsView : ContentPage
 {
-	public QuestionDetailsView()
+	public QuestionDetailsView( QuestionDetailsViewModel vm)
 	{
-		InitializeComponent();
-	}
+        InitializeComponent();
+    }
 }

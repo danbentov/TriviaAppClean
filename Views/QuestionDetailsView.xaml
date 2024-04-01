@@ -52,14 +52,14 @@
             <Entry Grid.Column="1" Grid.Row="4"
         Text="{Binding WrongAnswer3}"
         Placeholder="Enter the third wrong answer"/>
-                <Label Grid.Column="0" Grid.Row="5"
-                       Text="{Binding }"
-         
-            </Grid>
+
+
+        </Grid>
 
             <Button Text="Add Question"
             Style="{StaticResource EnterButton}"
             IsEnabled="{Binding IsAddingEnabled}"
             Command="{Binding AddQuestionCommand}"/>
+    
     </VerticalStackLayout>
 </ContentPage>
