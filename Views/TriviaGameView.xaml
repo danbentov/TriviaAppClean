@@ -5,9 +5,51 @@
              Title="TriviaGameView"
              Shell.PresentationMode="Modal">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        
+        <Label
+            Text="The Game !!"
+            BackgroundColor="CornflowerBlue"
+            TextColor="White"
+            FontAttributes="Bold"
+            FontSize="Large"
+            HorizontalTextAlignment="Center"
+            Padding="20"/>
+
+        <Label
+            Text="{Binding QT}"
+            HorizontalOptions="CenterAndExpand"/>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="6*"/>
+            </Grid.ColumnDefinitions>
+
+            <BoxView Grid.Row="0" Grid.Column="0" Color="Black" CornerRadius="90"/>
+            <Label Grid.Row="0" Grid.Column="0" TextColor="White" Text="1" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+            <BoxView Grid.Row="1" Grid.Column="0" Color="Black" CornerRadius="90"/>
+            <Label Grid.Row="1" Grid.Column="0" TextColor="White" Text="2" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+            <BoxView Grid.Row="2" Grid.Column="0" Color="Black" CornerRadius="90"/>
+            <Label Grid.Row="2" Grid.Column="0" TextColor="White" Text="3" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+            <BoxView Grid.Row="3" Grid.Column="0" Color="Black" CornerRadius="90"/>
+            <Label Grid.Row="3" Grid.Column="0" TextColor="White" Text="4" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+            <Button Grid.Row="0" Grid.Column="1" Command="{Binding onFirstAnswerCommand}" CommandParameter="1" Text="{Binding FirstAns}"/>
+            <Button Grid.Row="1" Grid.Column="1" Command="{Binding onSecondAnswerCommand}" CommandParameter="2" Text="{Binding SecondAns}"/>
+            <Button Grid.Row="2" Grid.Column="1" Command="{Binding onThirdAnswerCommand}" CommandParameter="3" Text="{Binding ThirdAns}"/>
+            <Button Grid.Row="3" Grid.Column="1" Command="{Binding onFourthAnswerCommand}" CommandParameter="4" Text="{Binding FourthAns}"/>
+
+        </Grid>
+
+        <Button BackgroundColor="Red" Text="Stop !" HorizontalOptions="Center" Command="{Binding stopCommand}" Margin="20"/>
     </VerticalStackLayout>
 </ContentPage>

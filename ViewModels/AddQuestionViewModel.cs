@@ -59,16 +59,16 @@ namespace TriviaAppClean.ViewModels
         {
             if (((App)Application.Current).LoggedInUser.Rank == 2)
             {
-                return false;
+                return true;
             }
             else if (((App)Application.Current).LoggedInUser.Questions.Count < ((App)Application.Current).LoggedInUser.Score / 100)
             {
-                return false;
+                return true;
 
             }
             else
             {
-                return true;
+                return false;
 
             }
         }
@@ -150,9 +150,17 @@ namespace TriviaAppClean.ViewModels
         {
             this.triviaService = service;
             this.connectingToServerView = connect;
-            this.ErrorComment = "Adding questions is only for managers, and for every 100 points you make, you cannot add a Q !!";
-            this.ShowErrorComment = AddQuestionEligible();
-            this.IsAddingEnabled = AddQuestionEligible();
+            this.ErrorComment = "For every 100 points you make, you can add a Q !!, unless you are a manager";
+            if (AddQuestionEligible())
+            {
+                this.isAddingEnabled = true;
+                this.ShowErrorComment = false;
+            }
+            else
+            {
+                this.isAddingEnabled = false;
+                this.ShowErrorComment = true;
+            }
             this.AddQuestionCommand = new Command(OnAddQuestion);
         }
 
@@ -175,8 +183,16 @@ namespace TriviaAppClean.ViewModels
             if (a == true)
             {
                 await Shell.Current.DisplayAlert("Add Qustion", "Question is added to the game database successfully !!", "ok");
-                this.ShowErrorComment = AddQuestionEligible();
-                this.IsAddingEnabled = AddQuestionEligible();
+                if (AddQuestionEligible())
+                {
+                    this.isAddingEnabled = true;
+                    this.ShowErrorComment = false;
+                }
+                else
+                {
+                    this.isAddingEnabled = false;
+                    this.ShowErrorComment = true;
+                }
                 this.Question = "";
                 this.RightAnswer = "";
                 this.WrongAnswer1 = "";
@@ -186,6 +202,21 @@ namespace TriviaAppClean.ViewModels
             else
             {
                 await Shell.Current.DisplayAlert("Add Qustion", "Question has failed to enter the gane database", "ok");
+                if (AddQuestionEligible())
+                {
+                    this.isAddingEnabled = true;
+                    this.ShowErrorComment = false;
+                }
+                else
+                {
+                    this.isAddingEnabled = false;
+                    this.ShowErrorComment = true;
+                }
+                this.Question = "";
+                this.RightAnswer = "";
+                this.WrongAnswer1 = "";
+                this.WrongAnswer2 = "";
+                this.WrongAnswer3 = "";
             }
 
         }

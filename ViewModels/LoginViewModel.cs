@@ -33,7 +33,7 @@ namespace TriviaAppClean.ViewModels
 
             await Application.Current.MainPage.Navigation.PushAsync(connectingToServerView);
             User u  = await this.triviaService.LoginAsync(Email, Password);
-            await Application.Current.MainPage.Navigation.PopModalAsync();
+            await Application.Current.MainPage.Navigation.PopAsync();
             
             //Set the application logged in user to be whatever user returned (null or real user)
             ((App)Application.Current).LoggedInUser = u;

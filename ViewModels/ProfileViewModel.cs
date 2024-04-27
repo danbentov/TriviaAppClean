@@ -78,16 +78,15 @@ namespace TriviaAppClean.ViewModels
             this.UpdateProfileCommand = new Command(OnUpdateProfile);
             Questions = new ObservableCollection<AmericanQuestion>();
             List<AmericanQuestion> list = ((App)Application.Current).LoggedInUser.Questions;
-            //ReadQuestions();
+            foreach (AmericanQuestion question in list)
+            {
+                Questions.Add(question);
+            }
             rank = ((App)Application.Current).LoggedInUser.Rank;
             score = ((App)Application.Current).LoggedInUser.Score;
-        }
-
-        private async void ReadQuestions()
-        {
-            List<AmericanQuestion> list = await triviaService.GetAllQuestions();
-            List<AmericanQuestion> list2 = (List<AmericanQuestion>)list.Where(q => q.UserId == ((App)Application.Current).LoggedInUser.Id && q.Status == 1);
-            this.Questions = new ObservableCollection<AmericanQuestion>(list2);
+            this.Email = ((App)Application.Current).LoggedInUser.Email;
+            this.Password = ((App)Application.Current).LoggedInUser.Password;
+            this.Name = ((App)Application.Current).LoggedInUser.Name;
         }
 
         public ICommand UpdateProfileCommand { get; set; }

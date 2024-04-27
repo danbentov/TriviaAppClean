@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TriviaAppClean.Views.ProfileView"
              Title="ProfileView">
+    <ScrollView VerticalScrollBarVisibility="Always">
     <VerticalStackLayout>
         
         <Entry
@@ -18,15 +19,32 @@
         <Button Command="{Binding UpdateProfileCommand}"
                 Text="Update !"/>
 
-        <CollectionView ItemsSource="{Binding Questions}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Text="My Score" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Row="1" Grid.Column="0" Text="My Rank" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="{Binding score}" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Row="1" Grid.Column="1" Text="{Binding rank}" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </Grid>
+
+            <CollectionView ItemsSource="{Binding Questions}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="5"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -34,12 +52,14 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <BoxView Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"
-                                 Color="Black"
-                                 CornerRadius="90"/>
-                        <Label Grid.Row="1" Grid.Column="2" Grid.RowSpan="2"
-                            Text="{Binding Id}"/>
-                        <Label Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
+                        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                                 Text="Q id:"
+                               FontSize="Large"/>
+                        <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
+                            Text="{Binding Id}"
+                               HorizontalOptions="StartAndExpand"
+                               FontSize="Large"/>
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                                Text="{Binding QText}"/>
                         <Label Grid.Row="0" Grid.Column="2" 
                             Text="{Binding CorrectAnswer}"/>
@@ -49,10 +69,14 @@
                             Text="{Binding Bad2}"/>
                         <Label Grid.Row="3" Grid.Column="2" 
                             Text="{Binding Bad3}"/>
-                        
+                        <BoxView Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3"
+                                 Color="Red"/>
+
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
