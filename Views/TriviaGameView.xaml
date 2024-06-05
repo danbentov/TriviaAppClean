@@ -15,6 +15,10 @@
             HorizontalTextAlignment="Center"
             Padding="20"/>
 
+        <Label 
+            Text="{Binding Score}"
+            HorizontalOptions="EndAndExpand"/>
+
         <Label
             Text="{Binding QT}"
             HorizontalOptions="CenterAndExpand"/>

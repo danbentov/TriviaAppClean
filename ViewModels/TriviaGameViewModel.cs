@@ -34,6 +34,21 @@ namespace TriviaAppClean.ViewModels
         public ICommand onThirdAnswerCommand { get; set; }
         public ICommand onFourthAnswerCommand { get; set; }
 
+
+        private int score;
+        public int Score
+        {
+            get
+            {
+                return score;
+            }
+            set
+            {
+                score = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string qT;
         public string QT
         {
@@ -101,7 +116,6 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
-        private int score;
 
         public ICommand stopCommand { get; set; }
         private async void onStop()
@@ -119,7 +133,13 @@ namespace TriviaAppClean.ViewModels
             this.onThirdAnswerCommand = new Command<string>(onSelectingAnswer);
             this.onFourthAnswerCommand = new Command<string>(onSelectingAnswer);
             this.stopCommand = new Command(onStop);
-            score = ((App)Application.Current).LoggedInUser.Score;
+            Score = ((App)Application.Current).LoggedInUser.Score;
+        }
+
+
+        public void GetScore()
+        {
+            Score = ((App)Application.Current).LoggedInUser.Score;
         }
 
         public async void GetQ()
@@ -176,7 +196,7 @@ namespace TriviaAppClean.ViewModels
             {
                 isCorrect = true;
                 ((App)Application.Current).LoggedInUser.Score += 10;
-                score = ((App)Application.Current).LoggedInUser.Score;
+                Score = ((App)Application.Current).LoggedInUser.Score;
                 await Shell.Current.DisplayAlert("Correct !!", "plus 10 points", "ok");
                 GetQ();
             }
@@ -187,7 +207,7 @@ namespace TriviaAppClean.ViewModels
                     ((App)Application.Current).LoggedInUser.Score = ((App)Application.Current).LoggedInUser.Score / 100 * 100;
                 else
                     ((App)Application.Current).LoggedInUser.Score -= 5;
-                score = ((App)Application.Current).LoggedInUser.Score;
+                Score = ((App)Application.Current).LoggedInUser.Score;
                 await Shell.Current.DisplayAlert("Wrong !!", "minus 5 points", "ok");
                 GetQ();
             }
