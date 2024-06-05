@@ -195,7 +195,7 @@ namespace TriviaAppClean.ViewModels
             if (currentQuestion.CorrectAnswer == selectedAns)
             {
                 isCorrect = true;
-                ((App)Application.Current).LoggedInUser.Score += 10;
+                ((App)Application.Current).LoggedInUser.Score = ((App)Application.Current).LoggedInUser.Score + 10;
                 Score = ((App)Application.Current).LoggedInUser.Score;
                 await Shell.Current.DisplayAlert("Correct !!", "plus 10 points", "ok");
                 GetQ();
@@ -206,7 +206,7 @@ namespace TriviaAppClean.ViewModels
                 if (((App)Application.Current).LoggedInUser.Score % 100 < 5)
                     ((App)Application.Current).LoggedInUser.Score = ((App)Application.Current).LoggedInUser.Score / 100 * 100;
                 else
-                    ((App)Application.Current).LoggedInUser.Score -= 5;
+                    ((App)Application.Current).LoggedInUser.Score = ((App)Application.Current).LoggedInUser.Score - 5;
                 Score = ((App)Application.Current).LoggedInUser.Score;
                 await Shell.Current.DisplayAlert("Wrong !!", "minus 5 points", "ok");
                 GetQ();

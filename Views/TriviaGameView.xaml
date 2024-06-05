@@ -6,7 +6,7 @@
              Shell.PresentationMode="Modal">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style TargetType="BoxView">
+            <Style TargetType="BoxView">  <!--implicit style-->
                 <Setter Property="Color" Value="Black"/>
                 <Setter Property="CornerRadius" Value="90"/>
             </Style>
@@ -26,7 +26,11 @@
 
         <Label 
             Text="{Binding Score}"
-            HorizontalOptions="EndAndExpand"/>
+            HorizontalOptions="CenterAndExpand"
+            FontSize="Large"
+            BackgroundColor="CornflowerBlue"
+            TextColor="Black"
+            FontAttributes="Bold"/>
 
         <Label
             Text="{Binding QT}"

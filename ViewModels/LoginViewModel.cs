@@ -39,7 +39,7 @@ namespace TriviaAppClean.ViewModels
             ((App)Application.Current).LoggedInUser = u;
             if (u == null)
             {
-                await Application.Current.MainPage.DisplayAlert("Login", "Login Faild!", "ok");
+                await Application.Current.MainPage.DisplayAlert("Login", "Login Failed!", "ok");
             }
             else
             {
