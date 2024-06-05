@@ -4,8 +4,17 @@
              x:Class="TriviaAppClean.Views.TriviaGameView"
              Title="TriviaGameView"
              Shell.PresentationMode="Modal">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="BoxView">
+                <Setter Property="Color" Value="Black"/>
+                <Setter Property="CornerRadius" Value="90"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <VerticalStackLayout>
-        
+
         <Label
             Text="The Game !!"
             BackgroundColor="CornflowerBlue"
@@ -35,16 +44,16 @@
                 <ColumnDefinition Width="6*"/>
             </Grid.ColumnDefinitions>
 
-            <BoxView Grid.Row="0" Grid.Column="0" Color="Black" CornerRadius="90"/>
+            <BoxView Grid.Row="0" Grid.Column="0"/>
             <Label Grid.Row="0" Grid.Column="0" TextColor="White" Text="1" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
 
-            <BoxView Grid.Row="1" Grid.Column="0" Color="Black" CornerRadius="90"/>
+            <BoxView Grid.Row="1" Grid.Column="0"/>
             <Label Grid.Row="1" Grid.Column="0" TextColor="White" Text="2" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
 
-            <BoxView Grid.Row="2" Grid.Column="0" Color="Black" CornerRadius="90"/>
+            <BoxView Grid.Row="2" Grid.Column="0"/>
             <Label Grid.Row="2" Grid.Column="0" TextColor="White" Text="3" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
 
-            <BoxView Grid.Row="3" Grid.Column="0" Color="Black" CornerRadius="90"/>
+            <BoxView Grid.Row="3" Grid.Column="0"/>
             <Label Grid.Row="3" Grid.Column="0" TextColor="White" Text="4" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
 
             <Button Grid.Row="0" Grid.Column="1" Command="{Binding onFirstAnswerCommand}" CommandParameter="1" Text="{Binding FirstAns}"/>
@@ -54,6 +63,6 @@
 
         </Grid>
 
-        <Button BackgroundColor="Red" Text="Stop !" HorizontalOptions="Center" Command="{Binding stopCommand}" Margin="20"/>
+        <Button Style="{DynamicResource StopButton}" Text="Stop!" HorizontalOptions="Center" Command="{Binding stopCommand}" Margin="20"/>
     </VerticalStackLayout>
 </ContentPage>
